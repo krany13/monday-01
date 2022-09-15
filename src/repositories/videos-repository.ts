@@ -1,5 +1,5 @@
 const videos: Array<VideoType> = [{id: 0, title: 'cats', author: 'Popov', canBeDownloaded: true,
-    createdAt: new Date().toISOString() , publicationDate: new Date().toISOString(),
+    createdAt: new Date().toISOString() , minAgeRestriction: 0,publicationDate: new Date().toISOString(),
     availableResolutions: []},
     {id: 1, title: 'dogs', author: 'Ivanov', canBeDownloaded: true,
     createdAt: new Date().toISOString(), publicationDate: new Date().toISOString(),
@@ -18,13 +18,18 @@ type VideoType = {
 }
 
 export const videosRepository = {
-    createVideo(title: string, author: string, availableResolutions: Array<string>) {
+    createVideo(title: string, author: string, availableResolutions: Array<string>, canBeDownloaded: boolean,
+    createdAt: string, minAgeRestriction: number, publicationDate: string, id: number) {
         const newVideo =
             {
                 id: +(new Date()),
                 title: title,
                 author: author,
-                availableResolutions: availableResolutions
+                availableResolutions: availableResolutions,
+                canBeDownloaded: canBeDownloaded,
+                createdAt: createdAt,
+                minAgeRestriction: minAgeRestriction,
+                publicationDate: publicationDate,
             }
         videos.push(newVideo)
         return newVideo

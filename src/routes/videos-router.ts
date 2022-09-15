@@ -17,7 +17,7 @@ videoRouter.get('/', (req: Request, res:Response) => {
 videoRouter.get('/:id', (req: Request, res:Response) => {
     let video = videosRepository.findVideoById(+req.params.id)
     if(video) {
-        res.status(201).send(video["id"])
+        res.send(video)
     } else {
         res.send(404)
     }
