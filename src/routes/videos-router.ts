@@ -57,6 +57,6 @@ videoRouter.put('/:id',
             const video =  videosRepository.findVideoById(+req.params.id)
             res.send(video)
         } else {
-            res.send(404)
+            res.send(400)
         }
     })
