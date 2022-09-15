@@ -53,5 +53,8 @@ export const videosRepository = {
     },
     seeVideo() {
         return 200
+    },
+    deleteVideo(videos: Array<VideoType>) {
+        return 204
     }
 }
