@@ -26,7 +26,7 @@ export const videosRepository = {
                 author: author,
                 availableResolutions: availableResolutions
             }
-        videos.push(newVideo)
+        videos.push(newVideo).toString()
         return newVideo
     },
     findVideoById(id: number) {
