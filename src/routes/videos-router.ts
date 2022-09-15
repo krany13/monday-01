@@ -10,7 +10,7 @@ const authorValidations = body('author').isLength({max:20})
 
 videoRouter.get('/', (req: Request, res:Response) => {
     const findVideos = videosRepository.seeVideo()
-    res.send(findVideos)
+    res.status(200).send(findVideos)
 })
 
 videoRouter.get('/:id', (req: Request, res:Response) => {
