@@ -1,4 +1,4 @@
-const videos: Array<VideoType> = [{id: 0, title: 'cats', author: 'Popov', canBeDownloaded: true,
+const videos: Array<VideoType> = [{id: 0, title: "cats", author: 'Popov', canBeDownloaded: true,
     createdAt: new Date().toISOString() , publicationDate: new Date().toISOString(),
     availableResolutions: []},
     {id: 1, title: 'dogs', author: 'Ivanov', canBeDownloaded: true,
@@ -52,11 +52,7 @@ export const videosRepository = {
         return  false;
     },
     seeVideo() {
-        if(videos) {
-            return videos
-        } else {
-            return false
-        }
+        return 200
     },
     deleteVideo() {
         this.deleteVideo()
