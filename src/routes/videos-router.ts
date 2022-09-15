@@ -22,7 +22,6 @@ videoRouter.get('/:id', (req: Request, res:Response) => {
     }
 })
 videoRouter.delete('/videos', (req: Request, res:Response) => {
-    const deleteVideo = videosRepository.deleteVideo()
     res.send(204)
 })
 //сделал

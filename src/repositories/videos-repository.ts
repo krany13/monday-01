@@ -1,4 +1,4 @@
-const videos: Array<VideoType> = [{id: 0, title: "cats", author: 'Popov', canBeDownloaded: true,
+const videos: Array<VideoType> = [{id: new Number(), title: new String(), author: 'Popov', canBeDownloaded: true,
     createdAt: new Date().toISOString() , publicationDate: new Date().toISOString(),
     availableResolutions: []},
     {id: 1, title: 'dogs', author: 'Ivanov', canBeDownloaded: true,
@@ -6,12 +6,12 @@ const videos: Array<VideoType> = [{id: 0, title: "cats", author: 'Popov', canBeD
     availableResolutions: []}]
 
 type VideoType = {
-    title: string
-    author: string
+    title: String
+    author: String
     availableResolutions: Array<string>
-    id?: number
+    id?: Number
     canBeDownloaded?: boolean
-    minAgeRestriction?: number
+    minAgeRestriction?: Number
     createdAt?: string
     publicationDate?: string
 }
@@ -53,8 +53,5 @@ export const videosRepository = {
     },
     seeVideo() {
         return 200
-    },
-    deleteVideo() {
-        this.deleteVideo()
     }
 }
