@@ -49,7 +49,7 @@ export const videosRepository = {
                 return true;
             }
         }
-        return  false;
+        return  404;
     },
     seeVideo() {
         if(videos) {
@@ -57,8 +57,5 @@ export const videosRepository = {
         } else {
             return false
         }
-    },
-    deleteVideos() {
-        return 204
     }
 }
