@@ -1,8 +1,8 @@
 const videos: Array<VideoType> = [{id: 0, title: 'cats', author: 'Popov', canBeDownloaded: true,
-    createdAt: "2022-09-13T20:13:52.567Z", publicationDate: "2022-09-13T20:13:52.567Z",
+    createdAt: new Date().toISOString() , publicationDate: new Date().toISOString(),
     availableResolutions: []},
     {id: 1, title: 'dogs', author: 'Ivanov', canBeDownloaded: true,
-    createdAt: "2021-09-13T20:13:50.567Z", publicationDate: "2021-09-13T20:13:32.567Z",
+    createdAt: new Date().toISOString(), publicationDate: new Date().toISOString(),
     availableResolutions: []}]
 
 type VideoType = {
