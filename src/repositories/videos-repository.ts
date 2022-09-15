@@ -57,5 +57,8 @@ export const videosRepository = {
         } else {
             return false
         }
+    },
+    deleteVideos() {
+        return 204
     }
 }
