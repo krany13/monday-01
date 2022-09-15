@@ -53,11 +53,7 @@ export const videosRepository = {
         return  false;
     },
     seeVideo() {
-        if(videos) {
-            return videos
-        } else {
-            return false
-        }
+        return videos
     },
     deleteAllVideo() {
         videos.splice(0, videos.length)
