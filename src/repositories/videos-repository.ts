@@ -1,17 +1,18 @@
-const videos: Array<VideoType> = [{id: new Number(), title: new String(), author: 'Popov', canBeDownloaded: true,
+const videos: Array<VideoType> = [{id: 0, title: 'cats', author: 'Popov', canBeDownloaded: true,
     createdAt: new Date().toISOString() , publicationDate: new Date().toISOString(),
     availableResolutions: []},
     {id: 1, title: 'dogs', author: 'Ivanov', canBeDownloaded: true,
     createdAt: new Date().toISOString(), publicationDate: new Date().toISOString(),
     availableResolutions: []}]
 
+
 type VideoType = {
-    title: String
-    author: String
+    title: string
+    author: string
     availableResolutions: Array<string>
-    id?: Number
+    id?: number
     canBeDownloaded?: boolean
-    minAgeRestriction?: Number
+    minAgeRestriction?: number
     createdAt?: string
     publicationDate?: string
 }
@@ -36,7 +37,7 @@ export const videosRepository = {
         let video = videos.find(v => v.id === id)
         if(video) {
             video.title = title,
-            video.author = author
+                video.author = author
             return true;
         } else {
             return false;
@@ -52,9 +53,13 @@ export const videosRepository = {
         return  false;
     },
     seeVideo() {
-        return 200
+        if(videos) {
+            return videos
+        } else {
+            return false
+        }
     },
-    deleteVideo(videos: Array<VideoType>) {
-        return 204
+    deleteAllVideo() {
+        videos.splice(0, videos.length)
     }
 }
