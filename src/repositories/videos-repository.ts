@@ -27,7 +27,7 @@ export const videosRepository = {
                 availableResolutions: availableResolutions
             }
         videos.push(newVideo)
-        return Array.from(videos)
+        return newVideo
     },
     findVideoById(id: number) {
         let video = videos.find(v => v.id === id)
