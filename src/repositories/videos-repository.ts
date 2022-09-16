@@ -31,7 +31,7 @@ export const videosRepository = {
                 minAgeRestriction: minAgeRestriction,
                 publicationDate: publicationDate,
             }
-        videos.push(newVideo)
+        videos.push(newVideo).toString()
         return newVideo
     },
     findVideoById(id: number) {
