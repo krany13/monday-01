@@ -8,6 +8,7 @@ export const videoRouter = Router({})
 
 const titleValidations = body('title').isString().notEmpty().isLength({max: 40 })
 const authorValidations = body('author').isString().notEmpty().isLength({max:20})
+const availableResolutionsValidations = body('availableResolutions').isArray().notEmpty().isLength({max: 8})
 
 videoRouter.get('/', (req: Request, res:Response) => {
     const findVideos = videosRepository.seeVideo()
@@ -41,6 +42,7 @@ videoRouter.delete('/:id', (req: Request, res:Response) => {
 videoRouter.post('/',
     titleValidations,
     authorValidations,
+    availableResolutionsValidations,
     //TODO: добавить валидацию для разрешений
     inputValidationsMiddleware,
     (req: Request, res:Response) => {
