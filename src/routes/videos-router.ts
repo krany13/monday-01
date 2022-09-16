@@ -52,7 +52,8 @@ videoRouter.put('/:id',
     authorValidations,
     inputValidationsMiddleware,
     (req: Request, res:Response) => {
-        const isUpdated = videosRepository.updateVideo(+req.params.id, req.body.title, req.body.author)
+        const isUpdated = videosRepository.updateVideo(+req.params.id, req.body.title, req.body.author, req.body.canBeDownloaded,
+            req.body.minAgeRestriction, req.body.publicationDate, req.body.id)
         if(isUpdated) {
             const video =  videosRepository.findVideoById(+req.params.id)
             res.status(204).send(video)
