@@ -4,7 +4,13 @@ import {validationResult} from "express-validator";
 export const inputValidationsMiddleware = (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        res.status(400).json({ errorsMessages: [{"message":"error", "field":"error"}] });
+        const errorsToJson = JSON.parse(JSON.stringify(errors));
+        let resultErrors = []
+        for (let i = 0; i !== errorsToJson.errors.length; i++) {
+            const error = errorsToJson.errors[i]
+            resultErrors.push({"message": error.msg, "field": error.param})
+        }
+        return res.status(400).send({errorsMessages: resultErrors});
     } else {
         next()
     }

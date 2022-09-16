@@ -6,8 +6,8 @@ import TypedArray = NodeJS.TypedArray;
 
 export const videoRouter = Router({})
 
-const titleValidations = body('title').isLength({max: 40 })
-const authorValidations = body('author').isLength({max:20})
+const titleValidations = body('title').isString().notEmpty().isLength({max: 40 })
+const authorValidations = body('author').isString().notEmpty().isLength({max:20})
 
 videoRouter.get('/', (req: Request, res:Response) => {
     const findVideos = videosRepository.seeVideo()
@@ -17,9 +17,9 @@ videoRouter.get('/', (req: Request, res:Response) => {
 videoRouter.get('/:id', (req: Request, res:Response) => {
     let video = videosRepository.findVideoById(+req.params.id)
     if(video) {
-        res.send(video)
+        return res.send(video)
     } else {
-        res.send(404)
+        return res.sendStatus(404)
     }
 })
 
@@ -32,9 +32,9 @@ videoRouter.get('/:id', (req: Request, res:Response) => {
 videoRouter.delete('/:id', (req: Request, res:Response) => {
     const isDeleted =  videosRepository.deleteVideoById(+req.params.id)
     if(isDeleted) {
-        res.send(204)
+        return res.sendStatus(204)
     } else {
-        res.send(404)
+        return res.sendStatus(404)
     }
 })
 
@@ -51,13 +51,15 @@ videoRouter.post('/',
 videoRouter.put('/:id',
     titleValidations,
     authorValidations,
+    //TODO: добавить валидацию для разрешений
+    //TODO: добавить валидацию для остальных входных параметров
     inputValidationsMiddleware,
     (req: Request, res:Response) => {
         const isUpdated = videosRepository.updateVideo(+req.params.id, req.body.title, req.body.author)
         if(isUpdated) {
             const video =  videosRepository.findVideoById(+req.params.id)
-            res.status(204).send(video)
+            return res.status(204).send(video)
         } else {
-            res.sendStatus(404)
+            return res.sendStatus(404)
         }
     })

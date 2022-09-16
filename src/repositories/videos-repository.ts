@@ -22,6 +22,8 @@ type VideoType = {
 
 export const videosRepository = {
     createVideo(title: string, author: string, availableResolutions: Array<string>) {
+        //TODO: создать в videosService
+        //TODO: перенести логику создания видео в service
         const dateNow: Date = new Date()
         const newVideo =
             {
