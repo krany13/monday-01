@@ -1,30 +1,38 @@
+import addDays from 'date-fns/addDays'
+
 const videos: Array<VideoType> = [{id: 0, title: 'cats', author: 'Popov', canBeDownloaded: true,
-    createdAt: new Date().toISOString() , minAgeRestriction: 0,publicationDate: new Date().toISOString(),
+    createdAt: new Date() , minAgeRestriction: 0, publicationDate: new Date(),
     availableResolutions: []},
-    {id: 1, title: 'dogs', author: 'Ivanov', canBeDownloaded: true,
-    createdAt: new Date().toISOString(), publicationDate: new Date().toISOString(),
-    availableResolutions: []}]
+    //{id: 1, title: 'dogs', author: 'Ivanov', canBeDownloaded: true,
+    // createdAt: new Date().toISOString(), publicationDate: new Date().toISOString(),
+    // availableResolutions: []}
+]
 
 
 type VideoType = {
+    id: number
     title: string
     author: string
     availableResolutions: Array<string>
-    id?: number
-    canBeDownloaded?: boolean
-    minAgeRestriction?: number
-    createdAt?: string
-    publicationDate?: string
+    canBeDownloaded: boolean
+    minAgeRestriction: number | null
+    createdAt: Date
+    publicationDate: Date
 }
 
 export const videosRepository = {
-    createVideo(title: string, author: string, availableResolutions: Array<string>,...videos:Array<VideoType>) {
+    createVideo(title: string, author: string, availableResolutions: Array<string>) {
+        const dateNow: Date = new Date()
         const newVideo =
             {
-                id: +(new Date()),
+                id: +dateNow,
                 title: title,
                 author: author,
-                availableResolutions: availableResolutions
+                availableResolutions: availableResolutions,
+                canBeDownloaded: false,
+                minAgeRestriction: null,
+                createdAt: dateNow,
+                publicationDate: addDays(dateNow, 1),
             }
         videos.push(newVideo)
         return newVideo

@@ -1,5 +1,4 @@
 import express, {Request, Response} from "express";
-import bodyParser from 'body-parser'
 import {videoRouter} from "./routes/videos-router";
 import {testingRouter} from "./routes/testing-router";
 
@@ -7,7 +6,7 @@ const app = express()
 
 const port = process.env.PORT || 3001
 
-const parserMiddleware = bodyParser({})
+const parserMiddleware = express.json()
 app.use(parserMiddleware)
 
 app.use('/videos', videoRouter)

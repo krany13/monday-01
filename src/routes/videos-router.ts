@@ -11,7 +11,7 @@ const authorValidations = body('author').isLength({max:20})
 
 videoRouter.get('/', (req: Request, res:Response) => {
     const findVideos = videosRepository.seeVideo()
-    res.status(200).send(findVideos)
+    return res.status(200).send(findVideos)
 })
 
 videoRouter.get('/:id', (req: Request, res:Response) => {
@@ -41,10 +41,11 @@ videoRouter.delete('/:id', (req: Request, res:Response) => {
 videoRouter.post('/',
     titleValidations,
     authorValidations,
+    //TODO: добавить валидацию для разрешений
     inputValidationsMiddleware,
     (req: Request, res:Response) => {
         const newVideo = videosRepository.createVideo(req.body.title, req.body.author, req.body.availableResolutions)
-        res.status(201).send(newVideo)
+        return res.status(201).send(newVideo)
     })
 
 videoRouter.put('/:id',
@@ -57,6 +58,6 @@ videoRouter.put('/:id',
             const video =  videosRepository.findVideoById(+req.params.id)
             res.status(204).send(video)
         } else {
-            res.send(404)
+            res.sendStatus(404)
         }
     })
