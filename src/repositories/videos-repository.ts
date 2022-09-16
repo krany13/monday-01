@@ -18,7 +18,7 @@ type VideoType = {
 }
 
 export const videosRepository = {
-    createVideo(title: string, author: string, availableResolutions: Array<string>) {
+    createVideo(title: string, author: string, availableResolutions: Array<string>,...videos:Array<VideoType>) {
         const newVideo =
             {
                 id: +(new Date()),
@@ -33,8 +33,7 @@ export const videosRepository = {
         let video = videos.find(v => v.id === id)
         return video
     },
-    updateVideo(id: number, title: string, author: string, availableResolutions: [], canBeDownloaded: boolean,
-                minAgeRestriction: number, publicationDate: string) {
+    updateVideo(id: number, title: string, author: string) {
         let video = videos.find(v => v.id === id)
         if(video) {
             video.title = title,
