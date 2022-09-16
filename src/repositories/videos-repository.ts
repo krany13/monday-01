@@ -18,18 +18,13 @@ type VideoType = {
 }
 
 export const videosRepository = {
-    createVideo(title: string, author: string, availableResolutions: Array<string>, canBeDownloaded: boolean,
-    createdAt: string, minAgeRestriction: number, publicationDate: string, id: number) {
+    createVideo(title: string, author: string, availableResolutions: Array<string>) {
         const newVideo =
             {
                 id: +(new Date()),
                 title: title,
                 author: author,
-                availableResolutions: availableResolutions,
-                canBeDownloaded: canBeDownloaded,
-                createdAt: createdAt,
-                minAgeRestriction: minAgeRestriction,
-                publicationDate: publicationDate,
+                availableResolutions: availableResolutions
             }
         videos.push(newVideo)
         return newVideo
@@ -58,7 +53,7 @@ export const videosRepository = {
         return  false;
     },
     seeVideo() {
-        return videos
+        return Array.from(videos)
     },
     deleteAllVideo() {
         videos.splice(0, videos.length)

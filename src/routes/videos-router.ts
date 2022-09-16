@@ -43,8 +43,7 @@ videoRouter.post('/',
     authorValidations,
     inputValidationsMiddleware,
     (req: Request, res:Response) => {
-        const newVideo = videosRepository.createVideo(req.body.title, req.body.author, req.body.availableResolutions,
-            req.body.canBeDownloaded, req.body.createdAt, req.body.id, req.body.minAgeRestriction, req.body.publicationDate)
+        const newVideo = videosRepository.createVideo(req.body.title, req.body.author, req.body.availableResolutions)
         res.status(201).send(newVideo)
     })
 
