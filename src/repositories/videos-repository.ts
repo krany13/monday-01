@@ -27,7 +27,7 @@ export const videosRepository = {
                 availableResolutions: availableResolutions
             }
         videos.push(newVideo)
-        return newVideo
+        return Array.from(videos)
     },
     findVideoById(id: number) {
         let video = videos.find(v => v.id === id)
@@ -53,7 +53,7 @@ export const videosRepository = {
         return  false;
     },
     seeVideo() {
-        return Array.from(videos)
+        return videos
     },
     deleteAllVideo() {
         videos.splice(0, videos.length)
