@@ -10,7 +10,14 @@ const stdResolutions = ['P144', 'P240', 'P360', 'P480', 'P720', 'P1080', 'P1440'
 
 const titleValidations = body('title').isString().notEmpty().isLength({max: 40})
 const authorValidations = body('author').isString().notEmpty().isLength({max: 20})
-const availableResolutionsValidations = body('availableResolutions').isArray().notEmpty().isLength({max: 8}).isIn(stdResolutions)
+const availableResolutionsValidations = body('availableResolutions').isArray().isLength({max: 8}).custom((array) => {
+    for (let i=0; i< array.length; i++) {
+        const value = array[i]
+        const isIn = stdResolutions.includes(value)
+        if (!isIn) return false
+    }
+    return true
+})
 const canBeDownloadedValidations = body('canBeDownloaded').isBoolean()
 const minAgeRestrictionValidations = body('minAgeRestriction').isNumeric()
 
