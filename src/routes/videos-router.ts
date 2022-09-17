@@ -2,7 +2,6 @@ import {Request, Response, Router} from "express";
 import {videosRepository} from "../repositories/videos-repository";
 import {body, validationResult} from "express-validator";
 import {inputValidationsMiddleware} from "../middlewares/input-validations-middleware";
-import TypedArray = NodeJS.TypedArray;
 
 export const videoRouter = Router({})
 
@@ -19,7 +18,8 @@ const availableResolutionsValidations = body('availableResolutions').isArray().i
     return true
 })
 const canBeDownloadedValidations = body('canBeDownloaded').isBoolean()
-const minAgeRestrictionValidations = body('minAgeRestriction').isNumeric()
+const minAgeRestrictionValidations = body('minAgeRestriction').isInt({min: 1, max:18})
+const publicationDateValidations = body('publicationDate').isString().notEmpty()
 
 videoRouter.get('/', (req: Request, res: Response) => {
     const findVideos = videosRepository.seeVideo()
@@ -64,10 +64,9 @@ videoRouter.put('/:id',
     titleValidations,
     authorValidations,
     availableResolutionsValidations,
-    //TODO: добавить валидацию для разрешений
-    //TODO: добавить валидацию для остальных входных параметров
     canBeDownloadedValidations,
     minAgeRestrictionValidations,
+    publicationDateValidations,
     inputValidationsMiddleware,
     (req: Request, res: Response) => {
         const isUpdated = videosRepository.updateVideo(+req.params.id, req.body.title, req.body.author)
