@@ -43,11 +43,16 @@ export const videosRepository = {
         let video = videos.find(v => v.id === id)
         return video
     },
-    updateVideo(id: number, title: string, author: string) {
+    updateVideo(id: number, title: string, author: string, availableResolutions: Array<string>, canBeDownloaded: boolean,
+                minAgeRestriction: number | null, publicationDate: Date) {
         let video = videos.find(v => v.id === id)
         if(video) {
             video.title = title,
-                video.author = author
+            video.author = author,
+            video.availableResolutions = availableResolutions,
+            video.canBeDownloaded = canBeDownloaded,
+            video.minAgeRestriction = minAgeRestriction,
+            video.publicationDate = publicationDate
             return true;
         } else {
             return false;
